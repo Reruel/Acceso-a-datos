@@ -1,0 +1,28 @@
+1) Seleccionar todos los títulos de las series:
+xpath: /series/serie/titulo
+xquery: for $serie in /series/serie
+return $serie/titulo
+
+2)Seleccionar las series que comenzaron antes de 1990:
+xpath: /series/serie[inicio_emision > 1990]/titulo
+xquery: for $serie in /series/serie
+where $serie/inicio_emision < 1990
+return $serie/titulo
+
+3)Seleccionar la serie con el título "Star Trek: Voyager":
+xpath: /series/serie[titulo = 'Star Trek: Voyager']
+xquery: for $serie in /series/serie
+where $serie/titulo = 'Star Trek: Voyager'
+return $serie
+
+4)Seleccionar las series que se emitieron entre 1970 y 1980:
+xpath: /series/serie[inicio_emision >= 1970 and inicio_emision <= 1980]/titulo
+xquery: for $serie in /series/serie
+where $serie/inicio_emision >= 1970 and $serie/inicio_emision <= 1980
+return $serie/titulo
+
+5)Seleccionar las series que aún están en emisión (no han finalizado):
+xpath: /series/serie[not(fin_emision)]
+xquery: for $serie in /series/serie
+where empty($serie/fin_emision)
+return $serie/titulo
